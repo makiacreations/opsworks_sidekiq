@@ -35,15 +35,8 @@ node[:deploy].each do |application, deploy|
     workers.each do |worker, options|
 
       # Convert attribute classes to plain old ruby objects
-      config = options[:config] ? options[:config].to_hash : {}
-      config.each do |k, v|
-        case v
-        when v.is_a? Chef::Node::ImmutableArray
-          config[k] = v.to_a
-        when v.is_a? Chef::Node::ImmutableMash
-          config[k] = v.to_hash
-        end
-      end
+      config = JSON.parse options[:config].to_json
+
 
       # Generate YAML string
       yaml = YAML::dump(config)
