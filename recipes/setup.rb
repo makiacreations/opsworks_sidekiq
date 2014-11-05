@@ -36,7 +36,7 @@ node[:deploy].each do |application, deploy|
 
       # Convert attribute classes to plain old ruby objects
       # This breaks the YAML and isn't needed
-      #config = options[:config] ? options[:config].to_hash : {}
+      config = options[:config] ? options[:config].to_hash : {}
       #config.each do |k, v|
       #  case v
       #  when Chef::Node::ImmutableArray
